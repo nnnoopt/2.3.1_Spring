@@ -20,20 +20,23 @@ public class UsersController {
     }
 
     @GetMapping()
-    public String getAllUsers(@ModelAttribute("flashMessage") String flashAttribute, Model model){
+    public String getAllUsers(Model model){
         model.addAttribute("users", userService.getUsers());
         return "index";
     }
 
     @GetMapping("/new")
-    public String addUser(@ModelAttribute("user") User user){
-        return "edit";
+    public String newUser(@ModelAttribute("user") User user){
+//        model.addAttribute("user", new User());
+//        @ModelAttribute("user") User user
+        return "new";
     }
 
+//    RedirectAttributes redirectAttributes
     @PostMapping()
-    public String createUser(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes){
+    public String create(@ModelAttribute("user") User user){
         userService.createUser(user);
-        redirectAttributes.addFlashAttribute("flashMessage", "User created successfully.");
+//        redirectAttributes.addFlashAttribute("flashMessage", "User created successfully.");
         return "redirect:/";
     }
 
