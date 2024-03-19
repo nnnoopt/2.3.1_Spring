@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import web.models.User;
 import web.services.UserService;
 
@@ -27,16 +26,12 @@ public class UsersController {
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user){
-//        model.addAttribute("user", new User());
-//        @ModelAttribute("user") User user
         return "new";
     }
 
-//    RedirectAttributes redirectAttributes
     @PostMapping()
     public String create(@ModelAttribute("user") User user){
         userService.createUser(user);
-//        redirectAttributes.addFlashAttribute("flashMessage", "User created successfully.");
         return "redirect:/";
     }
 
